@@ -1,0 +1,41 @@
+{% load static %}
+<tr id="tableRow">
+    <td class="cell">{{ obj.lot|capfirst }}</td>
+    <td class="cell"><span class="truncate">{{ obj.number }}</span></td>
+    <td class="cell">{{ obj.imsi }}</td>
+    <td class="cell">
+        {% if obj.status == "ok" %}
+        <span class="badge bg-success">{{ obj.status | upper }}</span>
+        {% endif %}
+        {% if obj.status == "broken" %}
+        <span class="badge bg-danger">{{ obj.status | upper }}</span>
+        {% endif %}
+        {% if obj.status == "lost" %}
+        <span class="badge bg-warning">{{ obj.status | upper }}</span>
+        {% endif %}
+        {% if obj.status == "stolen" %}
+        <span class="badge bg-info">{{ obj.status | upper }}</span>
+        {% endif %}
+    </td>
+    <td class="cell text-center">
+        {% if obj.in_stock == True %}
+        <img style="width: 18px;" class="" src="{% static 'assets/svg/icon-yes.svg' %}" alt="">
+        {% else %}
+        <img style="width: 18px;" src="{% static 'assets/svg/icon-no.svg' %}" alt="">
+        {% endif %}
+    </td>
+    <td class="cell"><span class="truncate">{{ obj.comment }}</span></td>
+    <td class="cell">
+        <div class="flex flex-row">
+            <button class="bg-transparent border-0 text-primary" hx-get="{% url 'edit-simcard' obj.pk %}"
+                hx-target="#edit-modal-body-{{obj.pk}}" data-bs-toggle="modal" data-bs-target="#edit-modal-{{obj.pk}}">
+                <i class="fa fa-pen" aria-hidden="true"></i>
+            </button>
+            <button hx-delete="{% url 'delete-simcard' obj.pk %}" hx-target="closest tr" hx-swap="outerHTML"
+                hx-confirm="Are you sur want to delete this SIM Card {{obj.number}} ?"
+                class="ml-2 bg-transparent border-0" style="cursor: pointer;">
+                <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+            </button>
+        </div>
+    </td>
+</tr>

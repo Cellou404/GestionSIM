@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Stock{% endblock title %}
+
+{% block content %}
+
+<div class="container-xl" id="pageContent">
+
+    <div class="row g-3 mb-4 align-items-center justify-content-between">
+        <div class="col-auto">
+            <h1 class="app-page-title mb-0">Stock</h1>
+        </div>
+        <div class="col-auto">
+            {% include "simcard/page-utilities.html" %}
+            <!--//table-utilities-->
+        </div><!--//col-auto-->
+    </div><!--//row-->
+
+    <!-- Placeholder for the modal -->
+    <!-- Create Modal -->
+    {% include "simcard/create_modal.html" %}
+    <!-- //Create Modal -->
+    <div class="app-card app-card-orders-table shadow-sm mb-5">
+        <div class="app-card-body">
+            <div class="table-responsive">
+                <table id="sim-table" class="table app-table-hover mb-0 text-left">
+                    <thead>
+                        <tr>
+                            <th class="cell">LOT</th>
+                            <th class="cell">NUMERO</th>
+                            <th class="cell">IMSI</th>
+                            <th class="cell">STATUS</th>
+                            <th class="cell text-center">IN STOCK</th>
+                            <th class="cell">COMMENT</th>
+                            <th class="cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        {% include "snippets/loop_table_row.html" %}
+                    </tbody>
+                </table>
+            </div><!--//table-responsive-->
+        </div><!--//app-card-body-->
+    </div><!--//app-card-->
+</div><!--//container-fluid-->
+{% for obj in queryset %}
+<!-- Boîte modale | Edit instance -->
+    {% include "simcard/edit_modal.html" %}
+{% endfor %}
+
+{% endblock content %}

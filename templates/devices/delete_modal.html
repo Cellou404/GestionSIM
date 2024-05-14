@@ -1,0 +1,11 @@
+<div id="delete-modal-{{obj.pk}}" class="modal fade" tabindex="-1" _="on htmx:afterRequest remove me then go to url {% url 'devices-list' %}">
+    <div class="modal-dialog" id="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Delete Asset</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="delete-modal-body-{{obj.pk}}"></div>
+        </div>
+    </div>
+</div>

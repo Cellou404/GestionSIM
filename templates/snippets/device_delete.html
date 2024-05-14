@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+<style>
+  ::marker {
+    content: "👉";
+    color: red;
+  }
+</style>
+
+<div class="modal-body">
+    <p>Are you sure want to delete this asset <strong>{{obj.registration_number}} ?</strong></p>
+    <p>By deleting this asset, you will lose:</p>
+    <ul class="">
+      <li>The registration number</li>
+      <li>The asset description</li>
+      <li>and so on...</li>
+    </ul>
+    <div class="flex flex-row">
+      <button class="btn app-btn-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+      <button class="btn btn-danger text-white" hx-post="{% url 'delete-device' obj.pk %}" hx-target="#tbody"
+        hx-swap="outerHTML">Delete</button>
+    </div>
+</div>

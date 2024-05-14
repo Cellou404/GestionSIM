@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+<div class="modal-body">
+    <form hx-post="{% url 'edit-simcard' obj.pk %}" hx-target="#tbody" hx-swap="innerHTML">
+        <!-- {{ simform | crispy }} -->
+        <div class="row">
+            <div class="form-group col-6 mb-0">
+                {{ simform.lot|as_crispy_field }}
+              </div>
+              <div class="form-group col-6 mb-0">
+                {{ simform.status|as_crispy_field }}
+              </div>
+        </div>
+        {{ simform.imsi|as_crispy_field }}
+        {{ simform.number|as_crispy_field }}
+        {{ simform.in_stock|as_crispy_field }}
+        {{ simform.comment|as_crispy_field }}
+        <button type="submit" class="btn app-btn-primary w-100">Save</button>
+    </form>
+</div>

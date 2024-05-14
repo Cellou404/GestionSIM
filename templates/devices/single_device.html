@@ -1,0 +1,27 @@
+{% load static %}
+<tr id="tableRow" style="font-size: small;">
+    <td class="cell">{{ obj.lot |capfirst }}</td>
+    <td class="cell">{{ obj.number }}</td>
+    <td class="cell">{{ obj.imsi }}</td>
+    <td class="cell">{{ obj.device_type | capfirst }}</td>
+    <td class="cell">{{ obj.imei }}</td>
+    <td class="cell">{{ obj.registration_number }}</td>
+    <td class="cell">{{ obj.asset_description }}</td>
+    <td class="cell">{{ obj.site | capfirst }}</td>
+    <td class="cell">{{ obj.plateforme | capfirst }}</td>
+    <td class="cell">
+        <div class="flex flex-row">
+            <button class="bg-transparent border-0 text-primary" hx-get="{% url 'edit-device' obj.pk %}"
+                hx-target="#edit-modal-body-{{obj.pk}}" hx-swap="outerHTML" data-bs-toggle="modal"
+                data-bs-target="#edit-modal-{{obj.pk}}">
+                <i class="fa fa-pen" aria-hidden="true"></i>
+            </button>
+            
+            <button hx-get="{% url 'delete-device' obj.pk %}" hx-target="#delete-modal-body-{{obj.pk}}"
+                data-bs-toggle="modal" data-bs-target="#delete-modal-{{obj.pk}}" hx-swap="outerHTML"
+                class="ml-2 bg-transparent border-0" style="cursor: pointer;">
+                <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+            </button>
+        </div>
+    </td>
+</tr>
